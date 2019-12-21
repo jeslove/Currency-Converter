@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var jsOblect = {first:"john", last:"kofi"};
+        // var jsonString = JSON.stringify(jsOblect);
+        // document.write(jsonString);
+
+          function getJson()
+          {
+              var xmlhttp = new XMLHttpRequest();
+
+              var url = "https://jsonplaceholder.typicode.com/users";
+
+              xmlhttp.open("GET",url,true);
+
+              xmlhttp.send();
+
+              if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+              {
+                  var result = xmlhttp.responseText;
+
+                  var jsResult = JSON.parse(result);
+
+                  document.getElementById("show").innerHTML = jsResult[0].name;
+              }
+          }
+    </script>
+
+       <button id="btnClick" onclick="getJson();">Collect Data</button>
+
+       <div id="show"></div>
+
+</body>
+</html>
