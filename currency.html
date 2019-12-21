@@ -13,8 +13,13 @@
         padding: 15px;
         background: #eeeeee;
         margin: 0px auto;
+      }
+
+      h2{
+          text-align: center;
       } 
     </style>
+
     <script>
         function converterCurrency(){
 
@@ -22,9 +27,17 @@
 
             var to = document.getElementById("to").value;
 
+            var amount = 25;
+
+            var format = 1;
+
             var xmlhttp = new XMLHttpRequest();
 
-            var url = "https://api.exchangeratesapi.io/latest?symbols=" + from + "," + to;
+            //var url = "https://api.exchangeratesapi.io/latest?symbols=" + from + "," + to;
+            //var url = "https://api.fixer.io/latest?symbols=" + from + "," + to;
+
+           // var url = "http://apilayer.net/api/convert?access_key=428aceeba4f86eebcd04905d94d99dc6" + from + "," + to;
+            var url = "http://apilayer.net/api/live?access_key=428aceeba4f86eebcd04905d94d99dc6&format=1" + from + "," + to;
 
             xmlhttp.open("GET", url, true);
 
@@ -38,7 +51,9 @@
 
                     var jsResult = JSON.parse(result);
 
-                    var oneUnit = jsResult.rates[to] / jsResult.rates[from];
+                    // console.log(jsResult.quotes.USDGHS);
+
+                    var oneUnit = jsResult.quotes[to] / jsResult.quotes[from];
 
                     var amt = document.getElementById("fromAmount").value;
 
@@ -50,9 +65,9 @@
 </head>
 <body onload="converterCurrency();">
     <div id="box">
-        <center>
+        
           <h2>Currency converter</h2>
-        </center> 
+        
         <table>
             <tr>
                 <td>
@@ -60,22 +75,22 @@
                 </td>
                 <td>
                    <select id="from" onchange="converterCurrency();">
-                       <option value="USD">US Dollar (USA)</option>
-                       <option value="EUR">Euro (EUR)</option>
-                       <option value="AUD">Australian Dollar (AUD)</option>
-                       <option value="GHS" selected>Ghanaian Cedi (GHS)</option>
-                       <option value="GBP">Pound Sterling (GBP)</option>
-                       <option value="AED">Arab Emirates Dirham (AED)</option>
-                        <option value="AED">Arab Emirates Dirham (AED)</option>
-                        <option value="BGN">Bulgarian Lev (BGN)</option>
-                        <option value="CAD">Canadian Dollar (CAD)</option>
-                        <option value="CHF">Swiss Franc (CHF)</option>
-                        <option value="DKK">Danish Krone (DKK)</option>
-                        <option value="ILS">Israeli New Shekel (ILS)</option>
-                        <option value="INR">Indian Rupee (INR)</option>
-                        <option value="JPY">Japanese Yen (JPY)</option>
-                        <option value="PHP">Philippine Peso (PHP)</option>
-                        <option value="RUB">Russian Ruble (RUB)</option>
+                       <option value="USDUSD">US Dollar (USA)</option>
+                       <option value="USDEUR">Euro (EUR)</option>
+                       <option value="USDAUD">Australian Dollar (AUD)</option>
+                       <option value="USDGHS" selected>Ghanaian Cedi (GHS)</option>
+                       <option value="USDGBP">Pound Sterling (GBP)</option>
+                       <option value="USDAED">Arab Emirates Dirham (AED)</option>
+                        <option value="USDAED">Arab Emirates Dirham (AED)</option>
+                        <option value="USDBGN">Bulgarian Lev (BGN)</option>
+                        <option value="USDCAD">Canadian Dollar (CAD)</option>
+                        <option value="USDCHF">Swiss Franc (CHF)</option>
+                        <option value="USDDKK">Danish Krone (DKK)</option>
+                        <option value="USDILS">Israeli New Shekel (ILS)</option>
+                        <option value="USDINR">Indian Rupee (INR)</option>
+                        <option value="USDJPY">Japanese Yen (JPY)</option>
+                        <option value="USDPHP">Philippine Peso (PHP)</option>
+                        <option value="USDRUB">Russian Ruble (RUB)</option>
                    </select>
                 </td>
             </tr>
@@ -83,23 +98,24 @@
                 <td>
                     <input type="text" id="toAmount" size="15" disabled>
                 </td>
+
                 <td>
                     <select id="to" onchange="converterCurrency();">
-                        <option value="USD" selected>US Dollar (USA)</option>
-                        <option value="EUR">Euro (EUR)</option>
-                        <option value="AUD">Australian Dollar (AUD)</option>
-                        <option value="GHS">Ghanaian Cedi (GHS)</option>
-                        <option value="GBP">Pound Sterling (GBP)</option>
-                        <option value="AED">Arab Emirates Dirham (AED)</option>
-                        <option value="BGN">Bulgarian Lev (BGN)</option>
-                        <option value="CAD">Canadian Dollar (CAD)</option>
-                        <option value="CHF">Swiss Franc (CHF)</option>
-                        <option value="DKK">Danish Krone (DKK)</option>
-                        <option value="ILS">Israeli New Shekel (ILS)</option>
-                        <option value="INR">Indian Rupee (INR)</option>
-                        <option value="JPY">Japanese Yen (JPY)</option>
-                        <option value="PHP">Philippine Peso (PHP)</option>
-                        <option value="RUB">Russian Ruble (RUB)</option>
+                        <option value="USDUSD" selected>US Dollar (USA)</option>
+                        <option value="USDEUR">Euro (EUR)</option>
+                        <option value="USDAUD">Australian Dollar (AUD)</option>
+                        <option value="USDGHS">Ghanaian Cedi (GHS)</option>
+                        <option value="USDGBP">Pound Sterling (GBP)</option>
+                        <option value="USDAED">Arab Emirates Dirham (AED)</option>
+                        <option value="USDBGN">Bulgarian Lev (BGN)</option>
+                        <option value="USDCAD">Canadian Dollar (CAD)</option>
+                        <option value="USDCHF">Swiss Franc (CHF)</option>
+                        <option value="USDDKK">Danish Krone (DKK)</option>
+                        <option value="USDILS">Israeli New Shekel (ILS)</option>
+                        <option value="USDINR">Indian Rupee (INR)</option>
+                        <option value="USDJPY">Japanese Yen (JPY)</option>
+                        <option value="USDPHP">Philippine Peso (PHP)</option>
+                        <option value="USDRUB">Russian Ruble (RUB)</option>
 
                     </select>
       
